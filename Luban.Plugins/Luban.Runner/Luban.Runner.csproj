@@ -29,9 +29,12 @@
       <ProjectReference Include="..\..\Luban\src\Luban.Python\Luban.Python.csproj" />
       <ProjectReference Include="..\..\Luban\src\Luban.Schema.Builtin\Luban.Schema.Builtin.csproj" />
       <ProjectReference Include="..\..\Luban\src\Luban.Typescript\Luban.Typescript.csproj" />
-      <ProjectReference Include="..\..\Luban\src\Luban\Luban.csproj" />
       <ProjectReference Include="..\Luban.DataTarget.Json.Newtonsoft\Luban.DataTarget.Json.Newtonsoft.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Compile Include="..\..\Luban\src\Luban\*.cs" />
+        <Compile Include="..\..\Luban\src\Luban\*\*.cs" />
+    </ItemGroup>
 
 </Project>
