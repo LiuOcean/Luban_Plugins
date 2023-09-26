@@ -11,21 +11,28 @@ public class NewtonJsonDataVisitor : JsonDataVisitor
 {
     public static NewtonJsonDataVisitor Ins { get; } = new();
 
-    public const string DllOption = "newtonsoft";
+    public const string Newtonsoft = "newtonsoft";
+    public const string DllOption  = "dll";
+    public const string Namespace  = "namespace";
 
-    private static readonly string s_dllName = EnvManager.Current.GetOption(DllOption, "dll", true);
+    private static readonly string s_dllName = EnvManager.Current.GetOption(Newtonsoft, DllOption, true);
+    
+    // @formatter:off
+    private static readonly string s_namespace = EnvManager.Current.TryGetOption(Newtonsoft, Namespace, false, out var ns ) ? ns + "." : string.Empty;
+    // @formatter:on
 
     public override void Accept(DMap type, Utf8JsonWriter x)
     {
         x.WriteStartObject();
-        foreach (var d in type.Datas)
+        foreach(var d in type.Datas)
         {
             x.WritePropertyName(d.Key.Apply(ToJsonPropertyNameVisitor.Ins));
             d.Value.Apply(this, x);
         }
+
         x.WriteEndObject();
     }
-    
+
     public override void Accept(DBean type, Utf8JsonWriter x)
     {
         x.WriteStartObject();
@@ -34,7 +41,7 @@ public class NewtonJsonDataVisitor : JsonDataVisitor
         {
             x.WritePropertyName(FieldNames.JsonTypeNameKey);
 
-            x.WriteStringValue($"{DataUtil.GetImplTypeName(type)}, {s_dllName}");
+            x.WriteStringValue($"{s_namespace}{DataUtil.GetImplTypeName(type)}, {s_dllName}");
         }
 
         var defFields = type.ImplType.HierarchyFields;
