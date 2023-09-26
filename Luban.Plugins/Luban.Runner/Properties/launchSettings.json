@@ -1,16 +1,12 @@
 {
   "profiles": {
-    "cs-bin": {
+    "json-client": {
       "commandName": "Project",
-      "commandLineArgs": "-t\r\nall\r\n-c\r\ncs-bin\r\n-d\r\nbin\r\n--conf\r\nD:\\workspace2\\luban_examples\\DataTables\\luban.conf\r\n--validationFailAsError\r\n-x\r\noutputCodeDir=D:\\workspace2\\luban_examples\\Projects\\Csharp_Unity_bin\\Assets\\Gen\r\n-x\r\noutputDataDir=D:\\workspace2\\luban_examples\\Projects\\GenerateDatas\\bytes\r\n-x\r\npathValidator.rootDir=D:\\workspace2\\luban_examples\\Projects\\Csharp_Unity_bin\r\n-x\r\nl10n.textProviderFile=*@D:\\workspace2\\luban_examples\\DataTables\\Datas\\l10n\\texts.json"
+      "commandLineArgs": "dotnet $GEN_CLIENT --conf /Users/lac_123_1234/Projects/OpenSource/Luban_Example/luban.conf -t client -c cs-simple-json -d newtonjson -e test --customTemplateDir /Users/lac_123_1234/Projects/OpenSource/Luban_Example/Tpls --validationFailAsError -x outputCodeDir=/Users/lac_123_1234/Projects/OpenSource/Luban_Example/C#/Client -x outputDataDir=/Users/lac_123_1234/Projects/OpenSource/Luban_Example/Json/Client -x tableExporter.json.compact=1 -x newtonsoft.dll=Example -x l10n.textProviderFile=/Users/lac_123_1234/Projects/OpenSource/Luban_Example/Data/Excels/I18N/LocalizeConfig.csv"
     },
-    "cs-bin-namingConvention": {
+    "validation": {
       "commandName": "Project",
-      "commandLineArgs": "-t\r\nall\r\n-c\r\ncs-bin\r\n-d\r\nbin\r\n--conf\r\nD:\\workspace2\\luban_examples\\DataTables\\luban.conf\r\n--validationFailAsError\r\n-x\r\noutputCodeDir=D:\\workspace2\\luban_examples\\Projects\\Csharp_Unity_bin\\Assets\\Gen\r\n-x\r\noutputDataDir=D:\\workspace2\\luban_examples\\Projects\\GenerateDatas\\bytes\r\n-x\r\npathValidator.rootDir=D:\\workspace2\\luban_examples\\Projects\\Csharp_Unity_bin\r\n-x\r\nl10n.textProviderFile=*@D:\\workspace2\\luban_examples\\DataTables\\Datas\\l10n\\texts.json\r\n-x namingConvention.property=upper"
-    },
-    "text-list": {
-      "commandName": "Project",
-      "commandLineArgs": "-t\r\nall\r\n-d\r\ntext-list\r\n--conf\r\nD:\\workspace2\\luban_examples\\DataTables\\luban.conf\r\n--validationFailAsError\r\n-x\r\noutputDataDir=D:\\workspace2\\luban_examples\\Projects\\GenerateDatas\\text\r\n-x l10n.textListFile=texts.txt"
+      "commandLineArgs": "--conf /Users/lac_123_1234/Projects/OpenSource/Luban_Example/luban.conf -t client -f --validationFailAsError -e test"
     }
   }
 }

@@ -30,6 +30,7 @@
       <ProjectReference Include="..\..\Luban\src\Luban.Schema.Builtin\Luban.Schema.Builtin.csproj" />
       <ProjectReference Include="..\..\Luban\src\Luban.Typescript\Luban.Typescript.csproj" />
       <ProjectReference Include="..\Luban.DataTarget.Json.Newtonsoft\Luban.DataTarget.Json.Newtonsoft.csproj" />
+      <ProjectReference Include="..\Luban.DataValidator.Strict\Luban.DataValidator.Strict.csproj" />
     </ItemGroup>
 
     <ItemGroup>
