@@ -4,11 +4,12 @@
 
 当前为了保证和 Luban 官方仓库一致, 使用 submodule 进行管理, 使用前请更新对应的仓库
 
-在 Luban.Plugins 仓库下, 定制了 3 个工程
+在 Luban.Plugins 仓库下, 定制了 4 个工程
 
 - Luban.Runner
 - Luban.DataValidator.Strict
 - Luban.DataTarget.Json.Newtonsoft
+- Luban.DataTarget.MemoryPack
 
 
 ## Luban.Runner
@@ -61,3 +62,11 @@ StrictRefValidator 为了解决这个问题, 重写了 Validate 函数, 并追�
 - -x newtonsoft.namespace=Example
 
 > 我平时的配表习惯, 不喜欢在 Luban 内引入 namespace, 而是直接在目标文件中固定写入, 因此需要手动追加
+
+## Luban.DataTarget.MemoryPack
+
+这个 proj 提供了 MemoryPack 序列化相关的内容实现，需要注意的是，在示例项目中针对 本地化相关的内容，仍然使用 json 进行序列化
+
+> 这里主要因为，要同时解决首包本地化和热更后的本地化的两种场景，但是定义的类结构不变，json 实现这个功能非常简单，但是在对格式要求严格的 MemoryPack 上实现较为强行
+
+如果你的项目不需要类似的内容，可以自行修改
