@@ -1,14 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.AspNetCore.Http.Generated;MyLibrary.Generated</InterceptorsPreviewNamespaces>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Luban\src\Luban.Core\Luban.Core.csproj" />
       <ProjectReference Include="..\..\Luban\src\Luban.DataValidator.Builtin\Luban.DataValidator.Builtin.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="PrivateProxy" Version="1.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 

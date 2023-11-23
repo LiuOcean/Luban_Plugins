@@ -5,37 +5,26 @@ using Luban.DataVisitors;
 using Luban.Defs;
 using Luban.Types;
 using Luban.Validator;
+using PrivateProxy;
 
 namespace Luban.DataValidator.Strict.Ref;
+
+[GeneratePrivateProxy(typeof(RefValidator))]
+public partial struct RefValidatorProxy;
 
 [Validator("ref", Priority = 1)]
 public class StrictRefValidator : RefValidator
 {
     private static readonly NLog.Logger s_logger = NLog.LogManager.GetCurrentClassLogger();
 
-    private readonly List<(DefTable Table, string Index, bool IgnoreDefault)>? _parentCompiledTables;
-
-    public StrictRefValidator()
-    {
-        var type  = typeof(RefValidator);
-        var field = type.GetField("_compiledTables", BindingFlags.Instance | BindingFlags.NonPublic);
-
-        _parentCompiledTables = field?.GetValue(this) as List<(DefTable Table, string Index, bool IgnoreDefault)>;
-
-        if(_parentCompiledTables is null)
-        {
-            throw new ArgumentNullException(
-                $"{nameof(StrictRefValidator)}'s Parent {nameof(RefValidator)} do not have _compiledTables property!"
-            );
-        }
-    }
-
+    private RefValidatorProxy _proxy = new(new RefValidator());
+    
     public override void Validate(DataValidatorContext ctx, TType type, DType key)
     {
         var genCtx      = GenerationContext.Current;
         var excludeTags = genCtx.ExcludeTags;
 
-        foreach(var tableInfo in _parentCompiledTables)
+        foreach(var tableInfo in _proxy._compiledTables)
         {
             var (defTable, field, zeroAble) = tableInfo;
             if(zeroAble && key.Apply(IsDefaultValueVisitor.Ins))
@@ -95,7 +84,7 @@ public class StrictRefValidator : RefValidator
             }
         }
 
-        foreach(var table in _parentCompiledTables)
+        foreach(var table in _proxy._compiledTables)
         {
             s_logger.Error(
                 "记录 {} = {} (来自文件:{}) 在引用表:{} 中不存在",
